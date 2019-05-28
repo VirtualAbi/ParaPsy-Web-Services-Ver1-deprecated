@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 
 //User Model
 const User = require("../models/User");
@@ -44,29 +46,36 @@ router.post("/register", (req, res) => {
         errors.push({ msg: "Email is already registered" });
         res.send("RENDER");
       } else {
-            const newUser = new User({
-                name,
-                email,
-                phone,
-                dob,
-                location,
-                password1,
-                password2
-            });
+        const newUser = new User({
+          name,
+          email,
+          phone,
+          dob,
+          location,
+          password1,
+          password2
+        });
 
-            //Hash Password
-            bcrypt.genSalt(10, (err, salt) => bcrypt.hash(newUser.password, salt, (err, hash) =>{
-                if(err) throw err;
-                
-                //Set password to hashed
-                newUser.password = hash;
-                //Save user
-                newUser.save()
-                       .then(user => {
-                           req.flash('success_msg', 'You are now registered and can log in')
-                           res.redirect('/users/login')})
-                       .catch(err => console.log(err))
-            }))
+        //Hash Password
+        bcrypt.genSalt(10, (err, salt) =>
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+
+            //Set password to hashed
+            newUser.password = hash;
+            //Save user
+            newUser
+              .save()
+              .then(user => {
+                req.flash(
+                  "success_msg",
+                  "You are now registered and can log in"
+                );
+                res.redirect("/users/login");
+              })
+              .catch(err => console.log(err));
+          })
+        );
       }
     });
   }

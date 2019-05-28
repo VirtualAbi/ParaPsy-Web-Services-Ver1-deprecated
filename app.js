@@ -2,11 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const session = require("express-session");
+const config = require("config");
 
 const app = express();
 
 //DB Config
-const db = require("./config/keys").mongoURI;
+const db = config.get("mongoURI");
 
 // ORM Connection
 mongoose
