@@ -1,0 +1,33 @@
+{
+  "name": "parapsy-web-services",
+  "version": "1.0.0",
+  "description": "Web services for the parapsy api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VirtualAbi/ParaPsy-Web-Services.git"
+  },
+  "author": "Abhinanth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VirtualAbi/ParaPsy-Web-Services/issues"
+  },
+  "homepage": "https://github.com/VirtualAbi/ParaPsy-Web-Services#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "mongoose": "^5.5.11",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
