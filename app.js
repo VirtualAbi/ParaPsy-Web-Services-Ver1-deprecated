@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const flash = require('connect-flash');
+const session = require('express-session');
 
 const app = express();
 
@@ -14,6 +16,15 @@ mongoose
 
 //Body Parser
 app.use(express.urlencoded({ extended: false }));
+
+//Express Session
+var app = express()
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true,
+}))
 
 //Routes
 app.use("/", require("./routes/users"));
