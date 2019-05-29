@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
+const mongoose = require('mongoose');
 
 //User Model
 const User = require("../models/User");
@@ -12,6 +13,22 @@ router.get("/login", (req, res) => res.send("login"));
 
 //Register Page
 router.get("/register", (req, res) => res.send("Register"));
+
+//Login Handle
+router.post('/demo',urlencodedParser,function(req,res){
+ mongoose.connect(url, function(err, db) {
+  db.collection('User').findOne({ email: req.body.email}, function(err, User) {
+            if(User ===null){
+              res.end("Login invalid");
+           }else if (User.email === req.body.email && User.pass === req.body.pass){
+           res.render('completeprofile',{profileData:User});
+         } else {
+           console.log("Credentials wrong");
+           res.end("Login invalid");
+         }
+  });
+});
+});
 
 //Register Handle
 router.post("/register", (req, res) => {
