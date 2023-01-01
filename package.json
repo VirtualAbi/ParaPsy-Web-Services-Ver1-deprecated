@@ -20,7 +20,7 @@
   "homepage": "https://github.com/VirtualAbi/ParaPsy-Web-Services#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^3.1.0",
+    "config": "^3.3.8",
     "connect-flash": "^0.1.1",
     "express": "^4.17.1",
     "express-session": "^1.16.1",
